@@ -7,7 +7,7 @@ package br.com.ucsal.data_structure.emanuelAp;
 
 public class Tree {
 	public class Node {
-		
+
 		public Node parent;
 		public Node left;
 		public Node right;
@@ -36,19 +36,18 @@ public class Tree {
 
 		if (isNull()) {
 			root = node;
-			return "the value is added to root";
+			return "value added to the root";
 		}
 
 		while (localNode != null) {
-		
 			node.parent = localNode;
 			if (value == localNode.value) {
-				return "the value already exist on the tree, dont inserted";
+				return "the value already exists in the tree, not inserted";
 			}
-		
+
 		}
 
-		return false;
+		return "valor não inserido";
 
 	}
 
