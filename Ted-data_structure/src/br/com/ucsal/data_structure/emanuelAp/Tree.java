@@ -43,11 +43,23 @@ public class Tree {
 			node.parent = localNode;
 			if (value == localNode.value) {
 				return "the value already exists in the tree, not inserted";
+			} else if (value < localNode.value) {
+				localNode = localNode.left;
+				if (localNode == null) {
+					node.parent.left = node;
+					return "node added to left";
+				}
+			} else {
+				localNode = localNode.right;
+
+				if (localNode == null) {
+					node.parent.right = node;
+					return "node added to right";
+				}
 			}
 
 		}
-
-		return "valor não inserido";
+		return "value does not inserted";
 
 	}
 
