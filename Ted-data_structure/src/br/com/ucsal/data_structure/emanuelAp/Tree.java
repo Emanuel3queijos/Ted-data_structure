@@ -1,8 +1,5 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Tree {
 	public class Node {
 		public Node parent;
@@ -58,40 +55,69 @@ public class Tree {
 		return root == null;
 	}
 
+//	public void printTree() {
+//		printTree(root);
+//	}
+//
+//	private void printTree(Node node) {
+//		if (node == null) {
+//			return;
+//		}
+//
+//		Queue<Node> queue = new LinkedList<>();
+//		queue.add(node);
+//
+//		while (!queue.isEmpty()) {
+//			int nodesAtCurrentLevel = queue.size();
+//
+//			while (nodesAtCurrentLevel > 0) {
+//				Node currentNode = queue.poll();
+//
+//				if (currentNode.value == root.value) {
+//					System.out.print("      " + currentNode.value + "\n" + "     // \\\\ " + "\n" + "    //   \\\\  ");
+//				} else {
+//					System.out.print("    " + currentNode.value + "   ");
+//				}
+//
+//				if (currentNode.left != null)
+//					queue.add(currentNode.left);
+//
+//				if (currentNode.right != null)
+//					queue.add(currentNode.right);
+//
+//				nodesAtCurrentLevel--;
+//			}
+//
+//			System.out.println();
+//		}
+//	}
+
 	public void printTree() {
-		printTree(root);
+		printTree(root, "     ");
 	}
 
-	private void printTree(Node node) {
+	//melhorara a logica de exibição
+	private void printTree(Node node, String indent) {
 		if (node == null) {
 			return;
 		}
 
-		Queue<Node> queue = new LinkedList<>();
-		queue.add(node);
+		if (node.parent == null) {
+			System.out.println(indent + node.value + "\n" + "    // \\\\ " + "\n" + "   //   \\\\  ");
+		} else if (node.parent == root.right) {
+			System.out.println(indent + node.value  +  "\n" + "       // \\\\ " + "\n" + "      //   \\\\  ");
+		}
 
-		while (!queue.isEmpty()) {
-			int nodesAtCurrentLevel = queue.size();
-
-			while (nodesAtCurrentLevel > 0) {
-				Node currentNode = queue.poll();
-
-				if (currentNode.value == root.value) {
-					System.out.print("      " + currentNode.value + "\n" + "     // \\\\ " + "\n" + "    //   \\\\  ");
-				} else {
-					System.out.print("    " + currentNode.value + "   ");
-				}
-
-				if (currentNode.left != null)
-					queue.add(currentNode.left);
-
-				if (currentNode.right != null)
-					queue.add(currentNode.right);
-
-				nodesAtCurrentLevel--;
+		if (node.left != null) {
+			if (node.right != null) {
+				printTree(node.left, indent + " ");
+			} else {
+				printTree(node.left, indent + "  ");
 			}
+		}
 
-			System.out.println();
+		if (node.right != null) {
+			printTree(node.right, indent + "  ");
 		}
 	}
 
