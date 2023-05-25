@@ -1,6 +1,5 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
-
 public class Tree {
 	public class Node {
 		public Node parent;
@@ -56,32 +55,28 @@ public class Tree {
 		return root == null;
 	}
 
-
+	// THE BEST LOGIC I CAN MAKE for this
 	public void printTree() {
-		printTree(root, "      ");
+		printTree(root, "  ");
 	}
 
-	//melhorara a logica de exibição
 	private void printTree(Node node, String indent) {
 		if (node == null) {
 			return;
 		}
 
-		if (node.parent == null) {
-			System.out.println(indent + node.value + "\n" + "      / \\ " + "\n" + "     /   \\  ");
-		} else if (node.left != null && node.right !=null  ) {
-			System.out.println( "    "+ node.left.value  +"     "+ node.value +  "\n" + "   / \\ "  + "  / \\ "  +"\n"+ "  /   \\ "+ "/   \\  ");
-		}
+		System.out.println(indent + node.value);
+
 		if (node.left != null) {
-			if (node.right != null) {
-				printTree(node.left, indent + " ");
-			} else {
-				printTree(node.left, indent + "  ");
-			}
+			System.out.println(indent + " │");
+			System.out.println(indent + " ├─");
+			printTree(node.left, indent + " │ ");
 		}
 
 		if (node.right != null) {
-			printTree(node.right, indent + "  ");
+			System.out.println(indent + " │");
+			System.out.println(indent + " └─");
+			printTree(node.right, indent + "   ");
 		}
 	}
 
