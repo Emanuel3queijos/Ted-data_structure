@@ -1,5 +1,6 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
+
 public class Tree {
 	public class Node {
 		public Node parent;
@@ -55,45 +56,9 @@ public class Tree {
 		return root == null;
 	}
 
-//	public void printTree() {
-//		printTree(root);
-//	}
-//
-//	private void printTree(Node node) {
-//		if (node == null) {
-//			return;
-//		}
-//
-//		Queue<Node> queue = new LinkedList<>();
-//		queue.add(node);
-//
-//		while (!queue.isEmpty()) {
-//			int nodesAtCurrentLevel = queue.size();
-//
-//			while (nodesAtCurrentLevel > 0) {
-//				Node currentNode = queue.poll();
-//
-//				if (currentNode.value == root.value) {
-//					System.out.print("      " + currentNode.value + "\n" + "     // \\\\ " + "\n" + "    //   \\\\  ");
-//				} else {
-//					System.out.print("    " + currentNode.value + "   ");
-//				}
-//
-//				if (currentNode.left != null)
-//					queue.add(currentNode.left);
-//
-//				if (currentNode.right != null)
-//					queue.add(currentNode.right);
-//
-//				nodesAtCurrentLevel--;
-//			}
-//
-//			System.out.println();
-//		}
-//	}
 
 	public void printTree() {
-		printTree(root, "     ");
+		printTree(root, "      ");
 	}
 
 	//melhorara a logica de exibição
@@ -103,11 +68,10 @@ public class Tree {
 		}
 
 		if (node.parent == null) {
-			System.out.println(indent + node.value + "\n" + "    // \\\\ " + "\n" + "   //   \\\\  ");
-		} else if (node.parent == root.right) {
-			System.out.println(indent + node.value  +  "\n" + "       // \\\\ " + "\n" + "      //   \\\\  ");
+			System.out.println(indent + node.value + "\n" + "      / \\ " + "\n" + "     /   \\  ");
+		} else if (node.left != null && node.right !=null  ) {
+			System.out.println( "    "+ node.left.value  +"     "+ node.value +  "\n" + "   / \\ "  + "  / \\ "  +"\n"+ "  /   \\ "+ "/   \\  ");
 		}
-
 		if (node.left != null) {
 			if (node.right != null) {
 				printTree(node.left, indent + " ");
@@ -131,5 +95,6 @@ public class Tree {
 		}
 
 		tree.printTree();
+
 	}
 }
