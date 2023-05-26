@@ -195,15 +195,17 @@ public class Tree {
 
 	public static void main(String[] args) {
 		Tree tree = new Tree();
-		Integer[] values = { 20, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
+		// dont putch negative elements s2
+		Integer[] values = { 2, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
 			System.out.println(inserted + " " + values[i]);
 		}
 
-		System.out.println(tree.root.right.value);
 		tree.printTree();
+		System.out.println(tree.root.right.value);
+		System.out.println(tree.root.left.value);
 
 	}
 
