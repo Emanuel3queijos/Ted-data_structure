@@ -1,8 +1,5 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tree {
 
 	public class Node {
@@ -45,7 +42,7 @@ public class Tree {
 					node.parent.left = node;
 					return "Node added to the left";
 				}
-			} else if (value > localNode.value) {
+			} else {
 				localNode = localNode.right;
 				if (isNull(localNode)) {
 					node.parent.right = node;
@@ -116,56 +113,37 @@ public class Tree {
 		return (node.left == null) && (node.right == null) ? "node is a leaf" : "node isn't a leaf";
 
 	}
-//
-//	// method to get elements on the left of the tree
-//
-//	public void getElementsLeft() {
-//		getElements(root.left);
-//
-//	}
-//	// method to get elements on the right of the tree
-//
-//	public void getElementsRight() {
-//		getElements(root.right);
-//	}
-//
-//	private void getElements(Node node) {
-//		if (isNull(root)) {
-//			System.out.println(root.value + " ");
-//			getElements(root.left);
-//			getElements(root.right);
-//		}
-//
-//	}
 
-	public List<Integer> getElementsLeft() {
-		List<Integer> elements = new ArrayList<>();
-		getElementsLeft(root, elements);
-		return elements;
+	// method to get elements on the left of the tree
+
+	public void getElementsLeft() {
+		getElementsLeft(root.left);
+
 	}
 
-	private void getElementsLeft(Node node, List<Integer> elements) {
-		if (node == null) {
-			return;
+	public void getElementsLeft(Node node) {
+		System.out.println(node.value);
+
+		if (!isNull(node.left)) {
+			getElementsLeft(node.left);
+
 		}
 
-		getElementsLeft(node.left, elements);
-		elements.add(node.value);
 	}
 
-	public List<Integer> getElementsRight() {
-		List<Integer> elements = new ArrayList<>();
-		getElementsRight(root, elements);
-		return elements;
+	public void getElementsRight() {
+		getElementsLeft(root.right);
+
 	}
 
-	private void getElementsRight(Node node, List<Integer> elements) {
-		if (node == null) {
-			return;
+	public void getElementsRight(Node node) {
+		System.out.println(node.value);
+
+		if (!isNull(node.right)) {
+			getElementsLeft(node.right);
+
 		}
 
-		getElementsRight(node.right, elements);
-		elements.add(node.value);
 	}
 
 // methods for print the tree
@@ -180,16 +158,16 @@ public class Tree {
 
 		System.out.println(indent + node.value);
 
-		if (node.left != null) {
-			System.out.println(indent + " │");
-			System.out.println(indent + " ├─");
-			printTree(node.left, indent + " │ ");
-		}
-
 		if (node.right != null) {
 			System.out.println(indent + " │");
+			System.out.println(indent + " ├─");
+			printTree(node.right, indent + " │ ");
+		}
+
+		if (node.left != null) {
+			System.out.println(indent + " │");
 			System.out.println(indent + " └─");
-			printTree(node.right, indent + "   ");
+			printTree(node.left, indent + "   ");
 		}
 	}
 
@@ -204,9 +182,7 @@ public class Tree {
 		}
 
 		tree.printTree();
-		System.out.println(tree.root.right.value);
-		System.out.println(tree.root.left.value);
-
+		tree.getElementsLeft();
 	}
 
 }
