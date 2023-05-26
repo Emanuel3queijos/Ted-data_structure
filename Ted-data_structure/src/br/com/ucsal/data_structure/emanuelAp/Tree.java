@@ -25,7 +25,7 @@ public class Tree {
 		Node localNode = root;
 		Node node = new Node(value);
 
-		if (isNull()) {
+		if (isNull(root)) {
 			root = node;
 			return "Value added to the root";
 		}
@@ -36,13 +36,13 @@ public class Tree {
 				return "The value already exists in the tree, not inserted";
 			} else if (value < localNode.value) {
 				localNode = localNode.left;
-				if (localNode == null) {
+				if (isNull(localNode)) {
 					node.parent.left = node;
 					return "Node added to the left";
 				}
 			} else {
 				localNode = localNode.right;
-				if (localNode == null) {
+				if (isNull(node)) {
 					node.parent.right = node;
 					return "Node added to the right";
 				}
@@ -51,13 +51,63 @@ public class Tree {
 		return "Value was not inserted";
 	}
 
-	public boolean isNull() {
-		return root == null;
+	public boolean isNull(Node node) {
+		return node == null;
 	}
 
-	// THE BEST LOGIC I CAN MAKE for this
+//	THE BEST LOGIC FOR THIS I COULD DO
 	public void printTree() {
 		printTree(root, "  ");
+	}
+
+	public void insertRight(Integer value, Node parent) {
+		Node newNode = new Node(value);
+		parent.right = newNode;
+		newNode.parent = parent;
+	}
+
+	public void insertLeft(Integer value, Node parent) {
+		Node newNode = new Node(value);
+		parent.left = newNode;
+		newNode.parent = parent;
+	}
+
+	public Integer removeRight(Node parent) {
+		if (parent.right == null) {
+			return -1;
+		}
+		Integer value = parent.right.value;
+		parent.right = null;
+		return value;
+	}
+
+	public Integer removeLeft(Node parent) {
+		if (parent.left == null) {
+			return -1; // Indicar que não há elemento para remover à esquerda
+		}
+		Integer value = parent.left.value;
+		parent.left = null;
+		return value;
+	}
+
+	public Integer size() {
+		return size(root);
+	}
+
+	private Integer size(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		return 1 + size(node.left) + size(node.right);
+	}
+
+	public String isLeaf(Node node) {
+
+		if (isNull(node))
+			return "the node is null";
+
+		return (node.left == null) && (node.right == null) ? "node is a leaf" : "node isn't a leaf";
+
 	}
 
 	private void printTree(Node node, String indent) {
@@ -82,7 +132,7 @@ public class Tree {
 
 	public static void main(String[] args) {
 		Tree tree = new Tree();
-		Integer[] values = { -7, 7, 2, 1, 8, 9, 8, 7, 3, 0 };
+		Integer[] values = { -7, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
