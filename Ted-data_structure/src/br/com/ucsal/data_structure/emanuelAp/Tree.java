@@ -1,6 +1,7 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
 public class Tree {
+
 	public class Node {
 		public Node parent;
 		public Node left;
@@ -21,6 +22,7 @@ public class Tree {
 		root = null;
 	}
 
+	// method to insert an element on the tree
 	public String insert(Integer value) {
 		Node localNode = root;
 		Node node = new Node(value);
@@ -42,7 +44,7 @@ public class Tree {
 				}
 			} else {
 				localNode = localNode.right;
-				if (isNull(node)) {
+				if (isNull(localNode)) {
 					node.parent.right = node;
 					return "Node added to the right";
 				}
@@ -51,27 +53,26 @@ public class Tree {
 		return "Value was not inserted";
 	}
 
+// method to check if the node is null
 	public boolean isNull(Node node) {
 		return node == null;
 	}
 
-//	THE BEST LOGIC FOR THIS I COULD DO
-	public void printTree() {
-		printTree(root, "  ");
-	}
-
+	// method to insert an element right
 	public void insertRight(Integer value, Node parent) {
 		Node newNode = new Node(value);
 		parent.right = newNode;
 		newNode.parent = parent;
 	}
 
+// method to insert an element left
 	public void insertLeft(Integer value, Node parent) {
 		Node newNode = new Node(value);
 		parent.left = newNode;
 		newNode.parent = parent;
 	}
 
+	// method to remove an element right
 	public Integer removeRight(Node parent) {
 		if (parent.right == null) {
 			return -1;
@@ -81,6 +82,7 @@ public class Tree {
 		return value;
 	}
 
+// method to remove an element left
 	public Integer removeLeft(Node parent) {
 		if (parent.left == null) {
 			return -1; // Indicar que não há elemento para remover à esquerda
@@ -90,6 +92,7 @@ public class Tree {
 		return value;
 	}
 
+	// method to show the size of the tree
 	public Integer size() {
 		return size(root);
 	}
@@ -101,6 +104,7 @@ public class Tree {
 		return 1 + size(node.left) + size(node.right);
 	}
 
+// method for Check if node is leaf
 	public String isLeaf(Node node) {
 
 		if (isNull(node))
@@ -108,6 +112,32 @@ public class Tree {
 
 		return (node.left == null) && (node.right == null) ? "node is a leaf" : "node isn't a leaf";
 
+	}
+
+	// method to get elements on the left of the tree
+
+	public void getElementsLeft() {
+		getElements(root.left);
+
+	}
+	// method to get elements on the right of the tree
+
+	public void getElementsRight() {
+		getElements(root.right);
+	}
+
+	private void getElements(Node node) {
+		if (!isNull(node)) {
+			System.out.println(node.value + " ");
+			getElements(node.left);
+			getElements(node.right);
+		}
+
+	}
+
+// methods for print the tree
+	public void printTree() {
+		printTree(root, "  ");
 	}
 
 	private void printTree(Node node, String indent) {
@@ -140,6 +170,7 @@ public class Tree {
 		}
 
 		tree.printTree();
+//		tree.getElementsLeft();
 
 	}
 }
