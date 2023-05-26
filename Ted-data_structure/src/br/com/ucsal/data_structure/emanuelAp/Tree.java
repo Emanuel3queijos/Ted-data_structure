@@ -1,5 +1,8 @@
 package br.com.ucsal.data_structure.emanuelAp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree {
 
 	public class Node {
@@ -42,7 +45,7 @@ public class Tree {
 					node.parent.left = node;
 					return "Node added to the left";
 				}
-			} else {
+			} else if (value > localNode.value) {
 				localNode = localNode.right;
 				if (isNull(localNode)) {
 					node.parent.right = node;
@@ -113,26 +116,56 @@ public class Tree {
 		return (node.left == null) && (node.right == null) ? "node is a leaf" : "node isn't a leaf";
 
 	}
+//
+//	// method to get elements on the left of the tree
+//
+//	public void getElementsLeft() {
+//		getElements(root.left);
+//
+//	}
+//	// method to get elements on the right of the tree
+//
+//	public void getElementsRight() {
+//		getElements(root.right);
+//	}
+//
+//	private void getElements(Node node) {
+//		if (isNull(root)) {
+//			System.out.println(root.value + " ");
+//			getElements(root.left);
+//			getElements(root.right);
+//		}
+//
+//	}
 
-	// method to get elements on the left of the tree
-
-	public void getElementsLeft() {
-		getElements(root.left);
-
+	public List<Integer> getElementsLeft() {
+		List<Integer> elements = new ArrayList<>();
+		getElementsLeft(root, elements);
+		return elements;
 	}
-	// method to get elements on the right of the tree
 
-	public void getElementsRight() {
-		getElements(root.right);
-	}
-
-	private void getElements(Node node) {
-		if (!isNull(node)) {
-			System.out.println(node.value + " ");
-			getElements(node.left);
-			getElements(node.right);
+	private void getElementsLeft(Node node, List<Integer> elements) {
+		if (node == null) {
+			return;
 		}
 
+		getElementsLeft(node.left, elements);
+		elements.add(node.value);
+	}
+
+	public List<Integer> getElementsRight() {
+		List<Integer> elements = new ArrayList<>();
+		getElementsRight(root, elements);
+		return elements;
+	}
+
+	private void getElementsRight(Node node, List<Integer> elements) {
+		if (node == null) {
+			return;
+		}
+
+		getElementsRight(node.right, elements);
+		elements.add(node.value);
 	}
 
 // methods for print the tree
@@ -162,15 +195,16 @@ public class Tree {
 
 	public static void main(String[] args) {
 		Tree tree = new Tree();
-		Integer[] values = { -7, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
+		Integer[] values = { 20, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
 			System.out.println(inserted + " " + values[i]);
 		}
 
+		System.out.println(tree.root.right.value);
 		tree.printTree();
-//		tree.getElementsLeft();
 
 	}
+
 }
