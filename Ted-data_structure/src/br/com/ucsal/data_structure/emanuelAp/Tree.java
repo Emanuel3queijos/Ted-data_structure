@@ -121,28 +121,21 @@ public class Tree {
 
 	}
 
-	public void getElementsLeft(Node node) {
-		System.out.println(node.value);
-
-		if (!isNull(node.left)) {
-			getElementsLeft(node.left);
-
-		}
+	private void getElementsLeft(Node node) {
+		printTree(node, "");
 
 	}
+
+	// method to get elements on the right of the tree
 
 	public void getElementsRight() {
-		getElementsLeft(root.right);
+		getElementsRight(root.right);
 
 	}
 
-	public void getElementsRight(Node node) {
-		System.out.println(node.value);
+	private void getElementsRight(Node node) {
 
-		if (!isNull(node.right)) {
-			getElementsLeft(node.right);
-
-		}
+		printTree(node, "");
 
 	}
 
@@ -161,7 +154,7 @@ public class Tree {
 		if (node.right != null) {
 			System.out.println(indent + " │");
 			System.out.println(indent + " ├─");
-			printTree(node.right, indent + " │ ");
+			printTree(indent, node.right, indent + " │ ");
 		}
 
 		if (node.left != null) {
@@ -174,7 +167,7 @@ public class Tree {
 	public static void main(String[] args) {
 		Tree tree = new Tree();
 		// dont putch negative elements s2
-		Integer[] values = { 2, 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
+		Integer[] values = { 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
@@ -183,6 +176,7 @@ public class Tree {
 
 		tree.printTree();
 		tree.getElementsLeft();
+		tree.getElementsRight();
 	}
 
 }
