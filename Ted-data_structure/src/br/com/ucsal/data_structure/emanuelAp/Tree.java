@@ -130,7 +130,7 @@ public class Tree {
 
 	}
 
-	// method to get elements on the left of the tree
+	// methods to get elements on the left of the tree
 
 	public void getElementsLeft() {
 		getElementsLeft(root.left);
@@ -142,7 +142,7 @@ public class Tree {
 
 	}
 
-	// method to get elements on the right of the tree
+	// methods to get elements on the right of the tree
 
 	public void getElementsRight() {
 		getElementsRight(root.right);
