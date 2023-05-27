@@ -51,13 +51,13 @@ public class Tree {
 			} else if (value < localNode.value) {
 				localNode = localNode.left;
 				if (isNull(localNode)) {
-					return insertNodeLeft(node, node.parent);
+					return insertNodeLeft(value, node.parent);
 				}
 			} else {
 				localNode = localNode.right;
 				if (isNull(localNode)) {
 					node.parent.right = node;
-					return insertNodeRight(node, node.parent);
+					return insertNodeRight(value, node.parent);
 				}
 			}
 		}
@@ -70,17 +70,19 @@ public class Tree {
 	}
 
 	// method to insert an element right
-	public String insertNodeRight(Node newNode, Node parent) {
-		parent.right = newNode;
-		newNode.parent = parent;
+	public String insertNodeRight(Integer newNode, Node parent) {
+		Node node = new Node(newNode);
+		parent.right = node;
+		node.parent = parent;
 		return "Node added to the right";
 
 	}
 
 // method to insert an element left
-	public String insertNodeLeft(Node newNode, Node parent) {
-		parent.left = newNode;
-		newNode.parent = parent;
+	public String insertNodeLeft(Integer newNode, Node parent) {
+		Node node = new Node(newNode);
+		parent.left = node;
+		node.parent = parent;
 		return "Node added to the left";
 
 	}
@@ -232,7 +234,7 @@ public class Tree {
 
 	public static void main(String[] args) {
 		Tree tree = new Tree();
-		// dont putch negative elements s2
+		// don't put negative elements s2
 		Integer[] values = { 7, 2, 1, 8, 9, 8, 7, 3, 0, 91, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
@@ -248,7 +250,11 @@ public class Tree {
 		System.out.println(tree.preOrder());
 		System.out.println(tree.inOrder());
 		System.out.println(tree.posOrder());
+		System.out.println(tree.insertNodeRight(10, tree.root));
+		System.out.println(tree.insert(101));
+		System.out.println(tree.insert(12));
 
+		tree.printTree();
 		// tree.getElementsLeft();
 //		tree.getElementsRight();
 	}
