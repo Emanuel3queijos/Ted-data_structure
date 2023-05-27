@@ -3,7 +3,7 @@
 //
 //**//
 //****&&&&&&&&&&&&&&&&&&&&&&&*********************%*%*%****//https://github.com/mano3queijos
-//**//	
+//**//	Emanuel Santos Almeida
 //
 //
 //**//
@@ -48,14 +48,13 @@ public class Tree {
 			} else if (value < localNode.value) {
 				localNode = localNode.left;
 				if (isNull(localNode)) {
-					node.parent.left = node;
-					return "Node added to the left";
+					return insertLeft(node, node.parent);
 				}
 			} else {
 				localNode = localNode.right;
 				if (isNull(localNode)) {
 					node.parent.right = node;
-					return "Node added to the right";
+					return insertRight(node, node.parent);
 				}
 			}
 		}
@@ -68,17 +67,19 @@ public class Tree {
 	}
 
 	// method to insert an element right
-	public void insertRight(Integer value, Node parent) {
-		Node newNode = new Node(value);
+	public String insertRight(Node newNode, Node parent) {
 		parent.right = newNode;
 		newNode.parent = parent;
+		return "Node added to the right";
+
 	}
 
 // method to insert an element left
-	public void insertLeft(Integer value, Node parent) {
-		Node newNode = new Node(value);
+	public String insertLeft(Node newNode, Node parent) {
 		parent.left = newNode;
 		newNode.parent = parent;
+		return "Node added to the left";
+
 	}
 
 	// method to remove an element right
@@ -119,7 +120,7 @@ public class Tree {
 		if (isNull(node))
 			return "the node is null";
 
-		return (node.left == null) && (node.right == null) ? "node " + node.value + " is a leaf"
+		return (isNull(node.left)) && (isNull(node.right)) ? "node " + node.value + " is a leaf"
 				: "node " + node.value + " isn't a leaf";
 
 	}
