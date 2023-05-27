@@ -90,7 +90,7 @@ public class Tree {
 	// method to remove an element right
 	public String removeRight(Node parent) {
 		if (isNull(parent.right)) {
-			return "the node is null";
+			return "the referred node is null";
 		}
 		Integer value = parent.right.value;
 		parent.right = null;
@@ -100,7 +100,7 @@ public class Tree {
 // method to remove an element left
 	public String removeLeft(Node parent) {
 		if (isNull(parent.left)) {
-			return "the node is null";
+			return "the referred node is null";
 		}
 		Integer value = parent.left.value;
 		parent.left = null;

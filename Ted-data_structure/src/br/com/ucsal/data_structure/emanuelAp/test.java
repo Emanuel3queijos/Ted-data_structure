@@ -38,7 +38,7 @@ public class test {
 		tree.printTree();
 		//test of methods remo
 		System.out.println(tree.removeLeft(tree.root.left));
-		System.out.println(tree.removeRight(tree.root.right));
+		System.out.println(tree.removeRight(tree.root.right.right));
 		tree.printTree();
 
 		// tree.getElementsLeft();
