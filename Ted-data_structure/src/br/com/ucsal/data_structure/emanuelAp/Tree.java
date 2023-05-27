@@ -1,3 +1,12 @@
+//**//
+//
+//
+//**//
+//****&&&&&&&&&&&&&&&&&&&&&&&*********************%*%*%****//https://github.com/mano3queijos
+//**//	
+//
+//
+//**//
 package br.com.ucsal.data_structure.emanuelAp;
 
 public class Tree {
@@ -74,7 +83,7 @@ public class Tree {
 
 	// method to remove an element right
 	public Integer removeRight(Node parent) {
-		if (parent.right == null) {
+		if (isNull(parent.right)) {
 			return -1;
 		}
 		Integer value = parent.right.value;
@@ -84,8 +93,8 @@ public class Tree {
 
 // method to remove an element left
 	public Integer removeLeft(Node parent) {
-		if (parent.left == null) {
-			return -1; // Indicar que não há elemento para remover à esquerda
+		if (isNull(parent.left)) {
+			return -1; // indicate that there is no element to remove on the left
 		}
 		Integer value = parent.left.value;
 		parent.left = null;
@@ -98,7 +107,7 @@ public class Tree {
 	}
 
 	private Integer size(Node node) {
-		if (node == null) {
+		if (isNull(node)) {
 			return 0;
 		}
 		return 1 + size(node.left) + size(node.right);
@@ -110,7 +119,8 @@ public class Tree {
 		if (isNull(node))
 			return "the node is null";
 
-		return (node.left == null) && (node.right == null) ? "node is a leaf" : "node isn't a leaf";
+		return (node.left == null) && (node.right == null) ? "node " + node.value + " is a leaf"
+				: "node " + node.value + " isn't a leaf";
 
 	}
 
@@ -145,19 +155,19 @@ public class Tree {
 	}
 
 	private void printTree(Node node, String indent) {
-		if (node == null) {
+		if (isNull(node)) {
 			return;
 		}
 
 		System.out.println(indent + node.value);
 
-		if (node.right != null) {
+		if (!isNull(node.right)) {
 			System.out.println(indent + " │");
 			System.out.println(indent + " ├─");
 			printTree(node.right, indent + " │ ");
 		}
 
-		if (node.left != null) {
+		if (!isNull(node.left)) {
 			System.out.println(indent + " │");
 			System.out.println(indent + " └─");
 			printTree(node.left, indent + "   ");
@@ -175,8 +185,10 @@ public class Tree {
 		}
 
 		tree.printTree();
-		tree.getElementsLeft();
-		tree.getElementsRight();
+
+		System.out.println(tree.isLeaf(tree.root.left.left.left.left));
+		// tree.getElementsLeft();
+//		tree.getElementsRight();
 	}
 
 }
