@@ -48,13 +48,13 @@ public class Tree {
 			} else if (value < localNode.value) {
 				localNode = localNode.left;
 				if (isNull(localNode)) {
-					return insertLeft(node, node.parent);
+					return insertNodeLeft(node, node.parent);
 				}
 			} else {
 				localNode = localNode.right;
 				if (isNull(localNode)) {
 					node.parent.right = node;
-					return insertRight(node, node.parent);
+					return insertNodeRight(node, node.parent);
 				}
 			}
 		}
@@ -67,7 +67,7 @@ public class Tree {
 	}
 
 	// method to insert an element right
-	public String insertRight(Node newNode, Node parent) {
+	public String insertNodeRight(Node newNode, Node parent) {
 		parent.right = newNode;
 		newNode.parent = parent;
 		return "Node added to the right";
@@ -75,7 +75,7 @@ public class Tree {
 	}
 
 // method to insert an element left
-	public String insertLeft(Node newNode, Node parent) {
+	public String insertNodeLeft(Node newNode, Node parent) {
 		parent.left = newNode;
 		newNode.parent = parent;
 		return "Node added to the left";
