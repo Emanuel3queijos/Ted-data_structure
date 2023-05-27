@@ -88,23 +88,23 @@ public class Tree {
 	}
 
 	// method to remove an element right
-	public Integer removeRight(Node parent) {
+	public String removeRight(Node parent) {
 		if (isNull(parent.right)) {
-			return -1;
+			return "the node is null";
 		}
 		Integer value = parent.right.value;
 		parent.right = null;
-		return value;
+		return "value removed" + value;
 	}
 
 // method to remove an element left
-	public Integer removeLeft(Node parent) {
+	public String removeLeft(Node parent) {
 		if (isNull(parent.left)) {
-			return -1; // indicate that there is no element to remove on the left
+			return "the node is null";
 		}
 		Integer value = parent.left.value;
 		parent.left = null;
-		return value;
+		return "value removed:" + value;
 	}
 
 	// method to show the size of the tree
@@ -231,6 +231,5 @@ public class Tree {
 			printTree(node.left, indent + "   ");
 		}
 	}
-
 
 }
