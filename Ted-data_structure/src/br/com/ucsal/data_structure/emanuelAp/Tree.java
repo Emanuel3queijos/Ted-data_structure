@@ -44,7 +44,7 @@ public class Tree {
 			return "Value added to the root";
 		}
 
-		while (localNode != null) {
+		while (!isNull(localNode)) {
 			node.parent = localNode;
 			if (value == localNode.value) {
 				return "The value already exists in the tree, not inserted";
