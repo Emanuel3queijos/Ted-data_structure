@@ -9,6 +9,9 @@
 //**//
 package br.com.ucsal.data_structure.emanuelAp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree {
 
 	public class Node {
@@ -150,6 +153,58 @@ public class Tree {
 
 	}
 
+	// function to return the search in preOrder
+
+	public List<Integer> preOrder() {
+		List<Integer> result = new ArrayList<>();
+		preOrder(root, result);
+		return result;
+	}
+
+	// method to search in preOrder
+	private void preOrder(Node node, List<Integer> result) {
+		if (isNull(node)) {
+			return;
+		}
+		result.add(node.value);
+		preOrder(node.left, result);
+		preOrder(node.right, result);
+	}
+	// function to return the search in order
+
+	public List<Integer> inOrder() {
+		List<Integer> result = new ArrayList<>();
+		inOrder(root, result);
+		return result;
+	}
+
+	// method to search in order
+	private void inOrder(Node node, List<Integer> result) {
+		if (isNull(node)) {
+			return;
+		}
+		inOrder(node.left, result);
+		result.add(node.value);
+		inOrder(node.right, result);
+	} // function to to return the search in pos-Order
+
+	public List<Integer> posOrder() {
+		List<Integer> result = new ArrayList<>();
+		posOrder(root, result);
+		return result;
+	}
+
+	// method to search in pos-order
+	private void posOrder(Node node, List<Integer> result) {
+		if (isNull(node)) {
+			return;
+		}
+		posOrder(node.left, result);
+		posOrder(node.right, result);
+		result.add(node.value);
+
+	}
+
 // methods for print the tree
 	public void printTree() {
 		printTree(root, "  ");
@@ -178,7 +233,7 @@ public class Tree {
 	public static void main(String[] args) {
 		Tree tree = new Tree();
 		// dont putch negative elements s2
-		Integer[] values = { 7, 2, 1, 8, 9, 8, 7, 3, 0, 10, 6, -1 };
+		Integer[] values = { 7, 2, 1, 8, 9, 8, 7, 3, 0, 91, 10, 6, -1 };
 
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
@@ -186,8 +241,14 @@ public class Tree {
 		}
 
 		tree.printTree();
-
+		tree.getElementsLeft();
+		tree.getElementsRight();
 		System.out.println(tree.isLeaf(tree.root.left.left.left.left));
+		System.out.println(tree.size());
+		System.out.println(tree.preOrder());
+		System.out.println(tree.inOrder());
+		System.out.println(tree.posOrder());
+
 		// tree.getElementsLeft();
 //		tree.getElementsRight();
 	}
