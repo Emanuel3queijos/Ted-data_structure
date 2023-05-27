@@ -154,7 +154,7 @@ public class Tree {
 		if (node.right != null) {
 			System.out.println(indent + " │");
 			System.out.println(indent + " ├─");
-			printTree(indent, node.right, indent + " │ ");
+			printTree(node.right, indent + " │ ");
 		}
 
 		if (node.left != null) {
