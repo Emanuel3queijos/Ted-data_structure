@@ -232,31 +232,5 @@ public class Tree {
 		}
 	}
 
-	public static void main(String[] args) {
-		Tree tree = new Tree();
-		// don't put negative elements s2
-		Integer[] values = { 7, 2, 1, 8, 9, 8, 7, 3, 0, 91, 10, 6, -1 };
-
-		for (int i = 0; i < values.length; i++) {
-			String inserted = tree.insert(values[i]);
-			System.out.println(inserted + " " + values[i]);
-		}
-
-		tree.printTree();
-		tree.getElementsLeft();
-		tree.getElementsRight();
-		System.out.println(tree.isLeaf(tree.root.left.left.left.left));
-		System.out.println(tree.size());
-		System.out.println(tree.preOrder());
-		System.out.println(tree.inOrder());
-		System.out.println(tree.posOrder());
-		System.out.println(tree.insertNodeRight(10, tree.root));
-		System.out.println(tree.insert(101));
-		System.out.println(tree.insert(12));
-
-		tree.printTree();
-		// tree.getElementsLeft();
-//		tree.getElementsRight();
-	}
 
 }
