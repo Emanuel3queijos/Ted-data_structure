@@ -2,8 +2,7 @@
 //
 //
 //**//
-//****&&&&&&&&&&&&&&&&&&&&&&&*********************%*%*%****//https://github.com/mano3queijos
-//**//	Emanuel Santos Almeida
+//****&&&&&&&&&&&&&&&&&&&&&&&*********************%*%*%****//https://github.com/mano3queijos/Ted-data_structure//**//
 //
 //
 //**//
