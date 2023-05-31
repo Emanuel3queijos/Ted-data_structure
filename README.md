@@ -1,5 +1,7 @@
 # Ted-data_structure
 
+on console:
+
 ```  
    7
    │
