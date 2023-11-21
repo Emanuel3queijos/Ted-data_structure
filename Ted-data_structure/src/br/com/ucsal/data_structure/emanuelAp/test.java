@@ -10,6 +10,7 @@ public class test {
 		for (int i = 0; i < values.length; i++) {
 			String inserted = tree.insert(values[i]);
 			System.out.println(inserted + " " + values[i]);
+
 		}
 
 		// test method printTree
